@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        <record id="user_shop_wise_sale_orders" model="ir.rule">
+            <field name="name">Sale Orders based on User's Shop</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">['|',('shop_id','=',user.shop_id.id),('shop_id','=',False)]</field>
+        </record>
+        <record id="user_shop_wise_invoices" model="ir.rule">
+            <field name="name">Invoice based on User's Shop</field>
+            <field name="model_id" ref="account.model_account_invoice"/>
+            <field name="global" eval="True"/>
+            <field name="domain_force">['|',('shop_id','=',user.shop_id.id),('shop_id','=',False)]</field>
+        </record>
+    </data>
+</openerp>

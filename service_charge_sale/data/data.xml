@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        <record id="med_leg_case" model="service.charge.type">
+            <field name="name">Medico-legal case</field>
+            <field eval="100.0" name="percentage"/>
+        </record>
+        <record id="ocmc" model="service.charge.type">
+            <field name="name">OCMC</field>
+            <field eval="100.0" name="percentage"/>
+        </record>
+        <record id="delivery" model="service.charge.type">
+            <field name="name">Delivery cases</field>
+            <field eval="100.0" name="percentage"/>
+        </record>
+        <record id="ultra_poor" model="service.charge.type">
+            <field name="name">Ultra-poor patient</field>
+            <field eval="100.0" name="percentage"/>
+        </record>
+        <record id="plhiv" model="service.charge.type">
+            <field name="name">PLHIV</field>
+            <field eval="100.0" name="percentage"/>
+        </record>
+        <record id="hospital_disc" model="service.charge.type">
+            <field name="name">Hospital Discount</field>
+            <field eval="5.0" name="percentage"/>
+        </record>
+        <record id="staff_disc" model="service.charge.type">
+            <field name="name">Staff Discount</field>
+            <field eval="10.0" name="percentage"/>
+        </record>
+    </data>
+</openerp>

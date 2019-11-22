@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="service_charge_type_form">
+            <field name="name">service.charge.type.form</field>
+            <field name="model">service.charge.type</field>
+            <field name="arch" type="xml">
+                <form string="Service Charge Type" version="7.0">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="percentage"/>
+                            <field name="discount_acc_id"/>
+                            <field name="active"/>
+                            <field name="note"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="service_charge_type_tree">
+            <field name="name">service.charge.type.tree</field>
+            <field name="model">service.charge.type</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Service Charge Type" >
+                    <field name="name"/>
+                    <field name="percentage"/>
+                    <field name="discount_acc_id"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model="ir.actions.act_window" id="service_charge_type_action">
+            <field name="name">Discounts</field>
+            <field name="res_model">service.charge.type</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+             <field name="context">{}</field>
+        </record>
+        
+        <menuitem name="Discounts" 
+                  id="menu_service_charge_type" 
+                  parent="base.menu_base_config"
+                  action="service_charge_type_action" sequence="3" />
+    </data>
+</openerp>

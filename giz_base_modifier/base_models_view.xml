@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<openerp>
+    <data>
+    
+        <!-- Users View -->
+        <record id="view_users_form_base_giz" model="ir.ui.view">
+            <field name="name">res.users.form.base.giz</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/notebook/page[1]/group/group/field[@name='tz']" position="after">
+                    <field name="shop_id" widget="selection"/>
+                </xpath>
+            </field>
+        </record>
+    
+        <!-- Customer Invoice View -->
+        <record id="invoice_form_base_giz" model="ir.ui.view">
+            <field name="name">account.invoice.form.base.giz</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/group/group/field[@name='date_invoice']" position="after">
+                    <field name="shop_id" widget="selection"/>
+                </xpath>
+                <xpath expr="//sheet/notebook/page/group/field[@name='residual']" position="attributes">
+				    <attribute name="invisible">1</attribute>
+			    </xpath>
+            </field>
+        </record>
+        
+        <!-- Supplier Invoice View -->
+        <record id="invoice_supplier_form_base_giz" model="ir.ui.view">
+            <field name="name">account.invoice.supplier.form.base.giz</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/group/group/field[@name='journal_id']" position="after">
+                    <field name="shop_id" widget="selection"/>
+                </xpath>
+            </field>
+        </record>
+        
+        <!-- Customer Payment View -->
+        <record id="view_vendor_receipt_form_base_giz" model="ir.ui.view">
+            <field name="name">account.voucher.receipt.form.base.giz</field>
+            <field name="model">account.voucher</field>
+            <field name="inherit_id" ref="account_voucher.view_vendor_receipt_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/notebook" position="attributes">
+				    <attribute name="invisible">1</attribute>
+			    </xpath>
+            </field>
+        </record>
+        
+        <record id="view_hide_balance_giz" model="ir.ui.view">
+            <field name="name">account.voucher.hidebalance.form.giz</field>
+            <field name="model">account.voucher</field>
+            <field name="inherit_id" ref="bahmni_customer_payment.jss_invoice_form_add_discount"/>
+            <field name="arch" type="xml">
+			    <xpath expr="//field[@name='balance_before_pay']" position="attributes">
+			        <attribute name="invisible">1</attribute>
+			    </xpath>
+			    <xpath expr="//field[@name='balance_amount']" position="attributes">
+			        <attribute name="invisible">1</attribute>
+			    </xpath>
+            </field>
+        </record>
+        
+        <!-- Supplier Payment View -->
+        <record id="view_vendor_payment_form_base_giz" model="ir.ui.view">
+            <field name="name">account.voucher.payment.form.base.giz</field>
+            <field name="model">account.voucher</field>
+            <field name="inherit_id" ref="account_voucher.view_vendor_payment_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/notebook" position="attributes">
+				    <attribute name="invisible">1</attribute>
+			    </xpath>
+            </field>
+        </record>
+        
+        <!--Hide Previous Balance and Total Outstanding-->
+        <record id="view_hide_prev_bal_total_out_giz" model="ir.ui.view">
+            <field name="name">sale.order.hide.prev.outstanding.giz</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="bahmni_sale_discount.sale_form_add_batch_price"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='prev_amount_outstanding']" position="attributes">
+				    <attribute name="invisible">1</attribute>
+			    </xpath>
+			    <xpath expr="//field[@name='total_outstanding']" position="attributes">
+				    <attribute name="invisible">1</attribute>
+			    </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>
+
+
+

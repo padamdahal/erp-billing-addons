@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+     	<report auto="False" 
+            id="account_invoice_billing_report" 
+            model="account.invoice" 
+            name="account.invoice.billing" 
+            rml="invoice_billing_report/report/invoice_billing.rml" 
+            string="Billing"
+            header="False"/>
+ 
+    </data>
+</openerp>

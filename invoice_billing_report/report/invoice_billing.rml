@@ -1,0 +1,128 @@
+﻿<?xml version="1.0"?>
+<document filename="test.pdf">
+  <template pageSize="(7.0cm,22.0cm)" title="Test" author="Martin Simon" allowSplitting="20">
+	<pageTemplate>
+		<frame id="first" x1="0.2cm" y1="0.0cm" width="7.0cm" height="22.0cm" />
+		<stylesheet> <!-- Set here the default font to use for all <para> tags --> 
+			<paraStyle name='Normal' fontName="DejaVu Sans"/>
+            <paraStyle name="main_footer" fontSize="7.0" alignment="RIGHT"/>
+            <paraStyle name="main_footer1" fontSize="6.0" alignment="LEFT"/>
+            <paraStyle name="company_name" fontSize="16.0" alignment="CENTER"/>
+            <paraStyle name="company_address" fontSize="8.0" alignment="CENTER"/>
+            <paraStyle name="main_header" fontSize="8.0" leading="10" alignment="LEFT" spaceBefore="0.0" spaceAfter="0.0"/> 
+		</stylesheet> 
+	</pageTemplate>
+  </template>
+  <stylesheet>
+	<blockTableStyle id="Standard_Outline">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table4">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <!-- Bottom Line -->
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="2,-1" stop="2,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#000000" start="3,-1" stop="3,-1"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table4_bottom_gray">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <!-- Bottom Line -->
+      <lineStyle kind="LINEBELOW" colorName="#EEEEEE" start="0,-1" stop="0,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#EEEEEE" start="1,-1" stop="1,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#EEEEEE" start="2,-1" stop="2,-1"/>
+      <lineStyle kind="LINEBELOW" colorName="#EEEEEE" start="3,-1" stop="3,-1"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table41">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+      <!-- Above Line-->
+      <lineStyle kind="LINEABOVE" colorName="#000000" start="1,0" stop="1,0"/>
+      <lineStyle kind="LINEABOVE" colorName="#000000" start="2,0" stop="2,0"/>
+    </blockTableStyle>
+    <initialize>
+      <paraStyle name="all" alignment="justify"/>
+    </initialize>
+    <paraStyle name="H1_LEFT" fontName="Helvetica" fontSize="8.0" alignment="LEFT"/>
+    <paraStyle name="H1_CENTER" fontName="Helvetica" fontSize="8.0" alignment="CENTER"/>
+    <paraStyle name="H1_CENTER-BOLD" fontName="Helvetica-Bold" fontSize="8.0" alignment="CENTER"/>
+    <paraStyle name="H1_RIGHT" fontName="Helvetica" fontSize="8.0" alignment="RIGHT"/>
+    <images/>
+  </stylesheet>
+  <story>
+  <pto>
+  	<blockTable colWidths="180.0">
+  		<tr>
+  			<td>
+  				<para style="H1_CENTER-BOLD">District (Trishuli) Hospital</para>
+  				<para style="H1_CENTER-BOLD">Bidur-09, Nuwakot</para>
+  			</td>
+  		</tr>
+	</blockTable>
+  	<para style="H1">[[repeatIn(objects,'o')]] [[ setLang(o.partner_id.lang) ]]</para>
+  	<para><font color="white">.</font></para>
+  	<para><font color="white">.</font></para>
+  	<blockTable colWidths="90.0,90.0">
+  		<tr>
+  			<td><para style="H1_LEFT">Bill No: [[ o.number or ' ' ]]</para></td>
+  			<td><para style="H1_LEFT">Location: [[ o.shop_id.name or ' ' ]]</para></td>
+  		</tr>
+  		<tr>
+  			<td><para style="H1_LEFT">Patient: [[ o.partner_id.name or ' ' ]]</para></td>
+  			<td><para style="H1_LEFT">Bill Date: [[ o.date_invoice or ' ' ]]</para></td>
+  		</tr>
+  		<tr>
+  			<td><para style="H1_LEFT"></para></td>
+  			<td><para style="H1_LEFT"><font color="white">Bill Date: </font>[[ get_nepali_date(o.date_invoice) ]]</para></td>
+  		</tr>
+	</blockTable>
+	<blockTable colWidths="180" rowHeights="15">
+  		<tr><td><para style="H1_LEFT">Referred By: [[ o.name or ' ' ]]</para></td></tr>
+	</blockTable>
+	<para><font color="white">.</font></para>
+	<blockTable colWidths="20.0,70.0,40.0,50.0" style="Table4" repeatRows="1">
+	  	<tr>
+	  		<td><para style="H1_LEFT">SN</para></td>
+	  		<td><para style="H1_LEFT">Particulars</para></td>
+	  		<td><para style="H1_CENTER">Quantity</para></td>
+	  		<td><para style="H1_RIGHT">Amount</para></td>
+	  	</tr>
+	</blockTable>
+	<section>
+  		<para style="P9">[[ repeatIn(o.invoice_line,'line') ]]</para>
+  		<blockTable colWidths="20.0,70.0,40.0,50.0" style="Table4_bottom_gray">
+  			<tr>
+  				<td><para style="H1_LEFT">[[ get_seq() ]]</para></td>
+  				<td><para style="H1_LEFT"> [[ line.name or ' ' ]] </para></td>
+  				<td><para style="H1_CENTER">[[ get_qty(line.quantity) ]]</para></td>
+  				<td><para style="H1_RIGHT">Rs. [[ line.price_subtotal or ' ' ]]</para></td>
+  			</tr>
+  		</blockTable>
+  	</section>
+  	<blockTable colWidths="60,60.0,60.0" repeatRows="1">
+	  	<tr>
+	  		<td><para style="H1_LEFT"></para></td>
+	  		<td><para style="H1_RIGHT">Total</para></td>
+	  		<td><para style="H1_RIGHT">Rs. [[ o.amount_untaxed or '0.00' ]]</para></td>
+	  	</tr>
+	  	<tr>
+	  		<td><para style="H1_LEFT"></para></td>
+	  		<td><para style="H1_RIGHT">Discount</para></td>
+	  		<td><para style="H1_RIGHT">Rs. [[ o.discount or '0.00' ]] </para></td>
+	  	</tr>
+	</blockTable>
+	<blockTable colWidths="60,60.0,60.0" repeatRows="1" style="Table41">
+	  	<tr>
+	  		<td><para style="H1_LEFT"></para></td>
+	  		<td><para style="H1_RIGHT">Grand Total</para></td>
+	  		<td><para style="H1_RIGHT">Rs. [[ o.amount_total or '0.00' ]]</para></td>
+	  	</tr>
+	</blockTable>
+	<para><font color="white">.</font></para>
+	<para style="H1_LEFT"><font color="white">....</font>Recieved By: [[ o.user_id.name or ' ' ]]</para>
+  </pto>
+  </story>
+</document>

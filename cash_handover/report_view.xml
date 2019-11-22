@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+     	<report auto="False" 
+            id="cash_handover_report" 
+            model="cash.handover" 
+            name="cash.handover.report" 
+            rml="cash_handover/report/cash_handover_report.rml" 
+            string="Cash Handover Report"
+            header="False"/>
+            
+        
+        <report auto="False" 
+            id="bank_deposit_report_menu" 
+            model="cash.handover" 
+            name="bank.deposit.report" 
+            rml="cash_handover/report/bank_deposit_report.rml" 
+            string="Bank Deposit Report"
+            header="False"
+            menu="False"/>
+ 
+    </data>
+</openerp>

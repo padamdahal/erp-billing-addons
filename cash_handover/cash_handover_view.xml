@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<openerp>
+    <data>
+        <!-- Cash Handover -->        
+        <record id="view_cash_handover" model="ir.ui.view">
+            <field name="name">cash.handover.form</field>
+            <field name="model">cash.handover</field>
+            <field name="arch" type="xml">
+                <form string="Cash Handover" version="7.0">
+                    <header>
+                        <button name="button_dummy" states="draft" string="Update" type="object" class="oe_highlight"/>
+                        <button name="%(action_bank_deposit_wizard)d" states="draft" string="Deposit To Bank" type="action" class="oe_highlight"/>
+                        <button name="%(action_shift_handover)d" states="draft" string="Shift Hand Over" type="action" class="oe_highlight"/>
+                    </header>
+                    <sheet>
+                        <label for="name" class="oe_edit_only"/>
+                        <h1><field name="name"/></h1>
+                        <group>
+                            <group>
+                                <field name="state" readonly="1"/>
+                                <field name="user_id"/>
+                                <field name="opening_balance"/>
+                                <field name="dummy_boolean" invisible="1"/>
+                            </group>
+                            <group>
+                                <field name="start_time" attrs="{'readonly': [('state','=', 'handover')]}"/>
+                                <field name="end_time" attrs="{'readonly': [('state','=', 'handover')]}"/>
+                                <field name="shift_type" attrs="{'readonly': [('state','=', 'handover')]}"/>
+                                <field name="shop_id" widget="selection" attrs="{'readonly': [('state','=', 'handover')]}"/>
+                                
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Customer Invoices" name="customer_invoices">
+                                <field name="customer_invoices">
+                                    <tree string="Customer Invoices">
+                                        <field name="partner_id"/>
+                                        <field name="date_invoice"/>
+                                        <field name="number"/>
+                                        <field name="amount_total" sum="Total Amount"/>
+                                        <field name="state"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Customer Refunds" name="customer_refunds">
+                                <field name="customer_refunds">
+                                    <tree string="Customer Refunds">
+                                        <field name="partner_id"/>
+                                        <field name="date_invoice"/>
+                                        <field name="number"/>
+                                        <field name="amount_total" sum="Total Amount"/>
+                                        <field name="state"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Customer Payments" name="customer_payments">
+                                <field name="customer_payments">
+                                    <tree string="Customer Payments">
+                                        <field name="partner_id"/>
+                                        <field name="date"/>
+                                        <field name="number"/>
+                                        <field name="amount" sum="Total Amount"/>
+                                        <field name="state"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Supplier Invoices" name="supplier_invoices">
+                                <field name="supplier_invoices">
+                                    <tree string="Supplier Invoices">
+                                        <field name="partner_id"/>
+                                        <field name="date_invoice"/>
+                                        <field name="number"/>
+                                        <field name="amount_total" sum="Total Amount"/>
+                                        <field name="state"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Supplier Refunds" name="supplier_refunds">
+                                <field name="supplier_refunds">
+                                    <tree string="Supplier Refunds">
+                                        <field name="partner_id"/>
+                                        <field name="date_invoice"/>
+                                        <field name="number"/>
+                                        <field name="amount_total" sum="Total Amount"/>
+                                        <field name="state"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Supplier Payments" name="supplier_payments">
+                                <field name="supplier_payments">
+                                    <tree string="Supplier Payments">
+                                        <field name="partner_id"/>
+                                        <field name="date"/>
+                                        <field name="number"/>
+                                        <field name="amount" sum="Total Amount"/>
+                                        <field name="state"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                        <group>
+                            <group>
+                                <field name="total_income_amount"/>
+                                <field name="total_out_amount"/>
+                                <field name="bank_deposit_amount"/>
+                                <field name="bank_depositor_name" attrs="{'invisible': [('bank_deposit_amount','=',0)]}"/>
+                                <field name="bank_depositor_number" attrs="{'invisible': [('bank_deposit_amount','=',0)]}"/>
+                                <field name="deposited_date" attrs="{'invisible': [('bank_deposit_amount','=',0)]}"/>
+                                <field name="closing_amount"/>
+                            </group>
+                            <group>
+                                <field name="handover_to_user_id"/>
+                                <field name="handover_time"/>
+                                <field name="handover_amount"/>
+                                <field name="difference_amount" attrs="{'invisible': [('difference_amount','=',0)]}"/>
+                                <field name="difference_amount_reason" attrs="{'invisible': [('difference_amount','=',0)]}"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+           </field>
+        </record>
+        
+        <record id="view_cash_handover_tree" model="ir.ui.view">
+            <field name="name">cash.handover.tree</field>
+            <field name="model">cash.handover</field>
+            <field name="arch" type="xml">
+                <tree string="Cash Handover">
+                    <field name="name"/>
+                    <field name="shift_type"/>
+                    <field name="user_id"/>
+                    <field name="shop_id"/>
+                    <field name="start_time"/>
+                    <field name="end_time"/>
+                    <field name="handover_time"/>
+                    <field name="handover_to_user_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_cash_handover_form" model="ir.actions.act_window">
+            <field name="name">Cash Handover</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cash.handover</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_cash_handover_tree"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to define a new cash handover.
+              </p>
+            </field>
+        </record>
+        
+        <menuitem id="menu_cash_handover" action="action_cash_handover_form" name="Cash Handover" parent="account.menu_finance_bank_and_cash" sequence="50"/>
+        
+        <!-- Export Cash HandOver report in excel from the action menu. -->
+        <record id="ir_actions_server_download_cash_handover" model="ir.actions.server">
+            <field name="name">Export Billing</field>
+            <field name="model_id" ref="model_cash_handover"/>
+            <field name="state">code</field>
+            <field name="code">action = obj.download_billing_excel()</field>
+        </record>
+        <record id="id_export_cash_handover" model="ir.values">
+            <field name="model_id" ref="model_cash_handover" />
+            <field name="name">Export Billing</field>
+            <field name="key2">client_action_multi</field>
+            <field eval="'ir.actions.server,%d'%ir_actions_server_download_cash_handover" name="value"/>
+            <field name="key">action</field>
+            <field name="model">cash.handover</field>
+        </record>
+        
+    </data>
+</openerp>
+
+
+

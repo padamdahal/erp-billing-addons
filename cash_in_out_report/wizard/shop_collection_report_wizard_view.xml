@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        
+        <record id="view_collection_report" model="ir.ui.view">
+            <field name="name">shop.collection.report.wizard</field>
+            <field name="model">shop.collection.report.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Shop Wise Collection" version="7.0">
+                    <group col='4'>
+                        <field name="start_date" class="oe_inline" />
+                        <field name="shop_id" class="oe_inline" widget="selection"/>
+                        <field name="end_date" class="oe_inline"/>
+                    </group>                
+                    <footer>
+                        <button string="Print PDF" name="print_report" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Print Excel" name="print_excel_report" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+               </form>
+            </field>
+        </record>
+
+        <record id="action_collection_report" model="ir.actions.act_window">
+            <field name="name">Shop Wise Collection</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">shop.collection.report.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_collection_report"/>
+            <field name="target">new</field>
+            <field name="multi">True</field>
+        </record>
+        
+       	
+       	<menuitem action="action_collection_report" id="menu_collection_report" 
+       		parent="account.menu_finance_bank_and_cash"
+        	name="Shop Wise Collection" sequence="100"/>
+
+    </data>
+</openerp>

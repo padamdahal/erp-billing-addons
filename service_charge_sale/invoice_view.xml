@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="invoice_form_service_charge_type" model="ir.ui.view">
+            <field name="name">account.invoice.form.service_charge_type</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="bahmni_sale_discount.invoice_form_add_discount"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='discount_acc_id']" position="after" >
+                    <field name="service_charge_type_id" widget="selection" on_change="on_change_service_charge_type_id(service_charge_type_id)" attrs="{'readonly':[('state','!=','draft')]}"/>
+                </xpath>
+                <xpath expr="//field[@name='discount_method']" position="attributes">
+                    <attribute name="attrs">{'readonly': [('state', '!=', 'draft')]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='discount_per']" position="attributes">
+                    <attribute name="attrs">{'readonly': [('state', '!=', 'draft')]}</attribute>
+                </xpath>
+                <xpath expr="//div/field[@name='discount']" position="attributes">
+				    <attribute name="attrs">{'readonly': [('state', '!=', 'draft')]}</attribute>
+			    </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>
+

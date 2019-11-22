@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_shift_handover_view" model="ir.ui.view">
+            <field name="name">Shift Handover</field>
+            <field name="model">shift.handover.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Shift Handover" version="7.0">
+                    <separator colspan="4" string="Do you really want to handover the amount?" />
+                    <group>
+                        <field name="closing_amount"/>
+                        <field name="handover_amount" on_change="onchange_handover_amount(closing_amount,handover_amount,context)"/>
+                        <field name="different_amount"/>
+                        <field name="user_id" options='{"create_edit": false}' class="oe_inline"/>
+                        <field name="shift_type" class="oe_inline"/>
+                        <field name="difference_amount_reason" attrs="{'invisible': [('different_amount','&lt;', 1)], 'required': [('different_amount','&gt;', 0)]}"/>
+                    </group>
+                    <footer>
+                        <button name="make_handover" string="Shift Handover" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+               </form>
+            </field>
+        </record>
+
+        <record id="action_shift_handover" model="ir.actions.act_window">
+            <field name="name">Shift Handover</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">shift.handover.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_shift_handover_view"/>
+            <field name="target">new</field>
+            <field name="multi">True</field>
+        </record>
+
+    </data>
+</openerp>

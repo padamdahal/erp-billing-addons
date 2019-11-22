@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="view_move_form_is_expired">
+            <field name="name">stock.production.lot.form.is_expired</field>
+            <field name="model">stock.production.lot</field>
+            <field name="inherit_id" ref="stock.view_production_lot_form" />
+            <field name="arch" type="xml">
+                <field name="ref" position="after">
+                    <field name="is_expired"/>
+                    <field name="is_discarded"/>
+                </field>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_move_search_is_expired">
+            <field name="name">stock.production.lot.search.is_expired</field>
+            <field name="model">stock.production.lot</field>
+            <field name="inherit_id" ref="stock.search_product_lot_filter" />
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <filter icon="terp-check" name="is_expired" string="Expired" domain="[('is_expired','=',True)]"/>
+                    <filter icon="terp-check" name="is_expired" string="Discarded" domain="[('is_discarded','=',True)]"/>
+                </field>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="view_sale_order_form_discarded">
+            <field name="name">sale.order.form.discarded</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="bahmni_stock_batch_sale_price.sale_form_add_batch_price" />
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page/field[@name='order_line']/tree/field[@name='batch_id']" position="attributes">
+                    <attribute name="domain">[('is_discarded','=',False)]</attribute>
+                </xpath>
+            </field>
+        </record>
+        <!--Cron Job-->
+        <record model="ir.cron" id="is_expired_cron">
+            <field name="name">Check Serial# Expired</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">minutes</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+            <field name="model" eval="'stock.production.lot'"/>
+            <field name="function" eval="'cron_is_batch_expired'"/>
+            <field name="args" eval="'()'" />
+        </record>
+    </data>
+</openerp>

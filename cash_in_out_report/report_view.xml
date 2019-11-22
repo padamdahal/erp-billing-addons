@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+     	<report auto="False" 
+            id="cash_in_out_report" 
+            model="account.invoice" 
+            name="cash.inout.report" 
+            rml="cash_in_out_report/report/cash_in_out_report.rml" 
+            string="Cash In-Out Report"
+            header="False"
+            menu="False"/>
+            
+        <report auto="False" 
+            id="shop_collection_report" 
+            model="account.invoice" 
+            name="shop.collection.report" 
+            rml="cash_in_out_report/report/shop_collection_report.rml" 
+            string="Shop Collection Report"
+            header="False"
+            menu="False"/>
+            
+        <report auto="False" 
+            id="discount_head_report_id" 
+            model="account.invoice" 
+            name="discount.head.report" 
+            rml="cash_in_out_report/report/discount_head_report.rml" 
+            string="Discount Head Report"
+            header="False"
+            menu="False"/>
+            
+    </data>
+</openerp>

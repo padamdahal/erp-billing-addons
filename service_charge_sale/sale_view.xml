@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="sale_order_form_service_charge_type" model="ir.ui.view">
+            <field name="name">sale.order.form.service_charge_type</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="bahmni_sale_discount.sale_form_add_batch_price"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='discount_acc_id']" position="after" >
+                    <field name="service_charge_type_id" widget="selection" on_change="on_change_service_charge_type_id(service_charge_type_id)" attrs="{'readonly':[('state','!=','draft')]}"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="res_partner_ext_hiv" model="ir.ui.view">
+            <field name="name">res.partner.hiv</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='supplier']" position="after" >
+                    <field name="hiv" readonly="1"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>
+

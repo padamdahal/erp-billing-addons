@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        <record id="vat13" model="account.tax">
+            <field name="name">VAT 13%</field>
+            <field eval="0.13" name="amount"/>
+            <field name="type">percent</field>
+            <field name="type_tax_use">purchase</field>
+        </record>
+    </data>
+</openerp>

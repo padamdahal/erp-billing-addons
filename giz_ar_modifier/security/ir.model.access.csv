@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+account.access_account_invoice_uinvoice,account.invoice,account.model_account_invoice,account.group_account_invoice,1,1,1,0
+account.access_account_invoice_group_invoice,account.invoice group invoice,account.model_account_invoice,account.group_account_invoice,1,1,1,0
+sale.access_account_invoice_manager,account_invoice manager,account.model_account_invoice,base.group_sale_manager,1,1,1,0
+purchase.access_account_invoice_purchase,account_invoice purchase,account.model_account_invoice,purchase.group_purchase_user,1,1,1,0
+hr_timesheet_invoice.access_account_invoice_hr_user,account.invoice.hr.user,account.model_account_invoice,base.group_hr_user,1,1,1,0
+point_of_sale.access_account_invoice_manager,account.invoice manager,account.model_account_invoice,point_of_sale.group_pos_manager,1,1,1,0
+access_account_invoice_root_user,account.invoice.root.user,account.model_account_invoice,base.group_system,1,1,1,1

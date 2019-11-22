@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+     	<report 
+            auto="False" 
+            id="stock_movement_report_id" 
+            model="stock.move" 
+            name="stock.movement.report" 
+            rml="giz_stock_report/report/movement.rml"
+            string="Stock Movement Report"
+            header="False"
+            menu="False"/>
+            
+        <report 
+            auto="False" 
+            id="stock_expiry_report_id" 
+            model="stock.production.lot" 
+            name="stock.expiry.report" 
+            rml="giz_stock_report/report/stock_expiry_report.rml"
+            string="Stock Expiry Report"
+            header="False"
+            menu="False"/>
+            
+        <report 
+            auto="False" 
+            id="discarded_items_report_id" 
+            model="stock.production.lot" 
+            name="discarded.items.report" 
+            rml="giz_stock_report/report/discarded_items_report.rml"
+            string="Discarded Items Report"
+            header="False"
+            menu="False"/>
+            
+        <report 
+            auto="False" 
+            id="current_stock_report_id" 
+            model="stock.move" 
+            name="current.stock.report" 
+            rml="giz_stock_report/report/current_stock.rml"
+            string="Current Stock"
+            header="False"
+            menu="False"/>  
+ 
+    </data>
+</openerp>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        
+        <record id="view_consumption_report" model="ir.ui.view">
+            <field name="name">consumption.report.wizard</field>
+            <field name="model">consumption.report.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Consumption Trend Report" version="7.0">
+                    <group col='4'>
+                        <field name="start_date" class="oe_inline" />
+                        <field name="shop_id" class="oe_inline" widget="selection"/>
+                        <field name="end_date" class="oe_inline"/>
+                    </group>                
+                    <footer>
+                        <button string="Print Excel" name="print_excel_report" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+               </form>
+            </field>
+        </record>
+
+        <record id="action_consumption_report" model="ir.actions.act_window">
+            <field name="name">Consumption Trend Report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">consumption.report.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_consumption_report"/>
+            <field name="target">new</field>
+            <field name="multi">True</field>
+        </record>
+        
+       	
+       	<menuitem action="action_consumption_report" id="menu_consumption_report" 
+       		parent="stock.menu_traceability"
+        	name="Consumption Trend Report" sequence="160"/>
+
+    </data>
+</openerp>

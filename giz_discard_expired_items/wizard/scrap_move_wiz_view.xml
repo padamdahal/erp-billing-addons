@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record id="view_scrap_batch_wiz_form" model="ir.ui.view">
+            <field name="name">scrap.batch.wiz.form</field>
+            <field name="model">scrap.batch.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Move Batch to Scrap" version="7.0">
+                    <group >
+                        <field name="scrap_location_id" domain="[('scrap_location','=',True)]" widget="selection"/>
+                    </group>
+                    <footer>
+                        <button name="create_scrap_move" string="Move to Scrap" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <act_window id="action_scrap_batch_wiz_multi"
+            multi="True"
+            key2="client_action_multi" name="Move Batch to Scrap"
+            res_model="scrap.batch.wizard" src_model="stock.production.lot"
+            view_mode="form" target="new" view_type="form"
+            view_id="view_scrap_batch_wiz_form"/>
+    </data>
+</openerp>
+
